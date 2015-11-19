@@ -1,11 +1,12 @@
 node('jdk7') {
 
 	stage 'build'
+		sh 'echo $PATH'
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/issc29/workflow-demo']]])
 		sh 'mvn clean package'
 		archive 'target/*.war'
 
-	stage 'integration-test' 
+	stage 'integration-test'
 		sh 'mvn verify'
 		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
@@ -34,4 +35,3 @@ stage 'approval'
 
 stage 'production'
 	echo 'mvn cargo:deploy'
-
