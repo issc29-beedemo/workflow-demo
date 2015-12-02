@@ -1,7 +1,6 @@
 node('jdk7') {
 
 	stage 'build'
-    echo "${env.BRANCH_NAME}"
 		env.PATH="${tool 'mvn-3.3.3-x'}/bin:${env.PATH}"
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/issc29/workflow-demo']]])
 		sh 'mvn clean package'
@@ -11,6 +10,9 @@ node('jdk7') {
 		sh 'mvn verify'
 		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
+
+if (env.BRANCH_NAME.length() < 3 || env.BRANCH_NAME.substring(0,3) != "PR-")
+{
 
 stage 'quality-and-functional-test'
 
@@ -36,3 +38,5 @@ stage 'approval'
 
 stage 'production'
 	echo 'mvn cargo:deploy'
+
+}
