@@ -40,3 +40,5 @@ stage 'approval'
 
 stage 'production'
 	echo 'mvn cargo:deploy'
+
+}
