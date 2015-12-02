@@ -11,10 +11,8 @@ node('jdk7') {
 		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
 
-if (env.BRANCH_NAME.length() > 2 && env.BRANCH_NAME.substring(0,3) == "PR-")
+if (env.BRANCH_NAME.length() < 3 || env.BRANCH_NAME.substring(0,3) != "PR-")
 {
-		return 0
-}
 
 stage 'quality-and-functional-test'
 
