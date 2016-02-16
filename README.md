@@ -1,2 +1,2 @@
 # workflow-demo
-pr test 123456
+pr test 123456 8
