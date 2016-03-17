@@ -11,6 +11,9 @@ node('jdk7') {
 		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
 
+if (env.BRANCH_NAME.length() < 3 || env.BRANCH_NAME.substring(0,3) != "PR-")
+{
+
 stage 'quality-and-functional-test'
 
 	parallel(qualityTest: {
@@ -35,3 +38,5 @@ stage 'approval'
 
 stage 'production'
 	echo 'mvn cargo:deploy'
+
+}
