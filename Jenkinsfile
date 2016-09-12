@@ -1,4 +1,4 @@
-node('jdk7') {
+node('jdk8') {
 
 	stage 'build'
 		env.PATH="${tool 'mvn-3.3.3-x'}/bin:${env.PATH}"
@@ -22,7 +22,7 @@ if (env.BRANCH_NAME.length() < 3 || env.BRANCH_NAME.substring(0,3) != "PR-")
 stage 'quality-and-functional-test'
 
 	parallel(qualityTest: {
-    	node('jdk7') {
+    	node('jdk8') {
     		echo 'sonar scan'
         	// sh 'mvn sonar:sonar'
     	}
