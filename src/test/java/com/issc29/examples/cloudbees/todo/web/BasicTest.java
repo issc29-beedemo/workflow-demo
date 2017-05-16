@@ -1,7 +1,7 @@
-package com.andypemberton.examples.cloudbees.todo.web;
+package com.issc29.examples.cloudbees.todo.web;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals; 
+import static org.junit.Assert.assertEquals;
 
 public class BasicTest {
 

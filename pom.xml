@@ -1,12 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.andypemberton.examples</groupId>
+  <groupId>com.issc29.examples</groupId>
   <artifactId>todo-web</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>todo-web Maven Webapp</name>
+  <name>todo-web</name>
   <url>http://maven.apache.org</url>
+  <profiles>
+      <profile>
+          <id>sonar</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+            <!--  <sonar.host.url>https://sonarqube.com</sonar.host.url> -->
+              <sonar.host.url>https://sonarqube.octodemoapps.com</sonar.host.url>
+              <sonar.verbose>true</sonar.verbose>
+              <sonar.login>${SONAR_PASS}</sonar.login>
+              <!--<sonar.organization>issc29-github</sonar.organization>-->
+          </properties>
+      </profile>
+   </profiles>
+
+
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
