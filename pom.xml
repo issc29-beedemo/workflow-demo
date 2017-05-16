@@ -17,7 +17,8 @@
             <!--  <sonar.host.url>https://sonarqube.com</sonar.host.url> -->
               <sonar.host.url>https://sonarqube.octodemoapps.com</sonar.host.url>
               <sonar.verbose>true</sonar.verbose>
-              <sonar.login>${SONAR_PASS}</sonar.login>
+              <sonar.login>${SONAR_PASS}</sonar.login> 
+
               <!--<sonar.organization>issc29-github</sonar.organization>-->
           </properties>
       </profile>
@@ -46,7 +47,16 @@
         </dependency>
   </dependencies>
   <build>
-    <finalName>todo-web</finalName>
+   <finalName>todo-web</finalName>
+   <pluginManagement>
+     <plugins>
+       <plugin>
+         <groupId>org.sonarsource.scanner.maven</groupId>
+         <artifactId>sonar-maven-plugin</artifactId>
+         <version>3.2</version>
+       </plugin>
+     </plugins>
+   </pluginManagement>
   </build>
   <repositories>
         <repository>
